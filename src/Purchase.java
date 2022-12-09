@@ -57,6 +57,10 @@ public class Purchase {
         return status;
     }
 
+    public Money getPrice() {
+        return null;
+    }
+
     public enum Delivery{
         IN_POST,
         UPS,
