@@ -1,5 +1,9 @@
 import java.util.List;
+import java.util.Map;
 
-public class Level {
+public abstract class Level{
+
     List<Purchase> produce = DataFactory.produce();
+
+
 }

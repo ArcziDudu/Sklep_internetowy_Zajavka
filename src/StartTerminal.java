@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.Scanner;
 public class StartTerminal {
     private final levelFirst levelFirst = new levelFirst();
+    private final levelSecond levelSecond = new levelSecond();
     List<Purchase> produce = DataFactory.produce();
     public void start(String task, Scanner sc){
         if(task.equals("start")){
@@ -18,9 +19,13 @@ public class StartTerminal {
         System.out.println("poziom 3");
         System.out.println("poziom 4");
         System.out.println("poziom 5");
+        levelValidator(sc);
+    }
 
+    private void levelValidator(Scanner sc) {
         while (sc.hasNextLine()){
             String level = sc.nextLine();
+
             switch (level){
                 case "poziom 1"
                         -> startLevel1(sc);
@@ -32,9 +37,7 @@ public class StartTerminal {
         }
     }
 
-    private void startLevel2(Scanner sc) {
 
-    }
     private void startLevel1(Scanner sc) {
         System.out.println("wpisz task 1 aby wyświetlić ilość osób która dokonała zakupów w sklepie");
         System.out.println("wpisz task 2 aby wyświetlić jaka ilość klientów płaciła Blikiem");
@@ -56,10 +59,63 @@ public class StartTerminal {
                 case "task 5"
                         -> System.out.println(levelFirst.getUniqueEuro());
                 case "wszystko"
-                        -> System.out.println(levelFirst.getAll());
+                        -> System.out.println(levelFirst.getAlls());
                 default -> System.out.println("nie rozumiem");
             }
 
+        }
+    }
+
+    private void startLevel2(Scanner sc) {
+        System.out.println("wpisz task 1 aby zobaczyć ile PLN wydała każda z osób");
+        System.out.println
+                ("wpisz task 2 aby zobaczyć ilość kupionych przedmiotów z danej kategorii przez poszczególne osoby");
+        TaskChecker(sc);
+    }
+
+    private void TaskChecker(Scanner sc) {
+        while (sc.hasNextLine()){
+            String level2Scanner = sc.nextLine();
+
+            switch (level2Scanner){
+                case "task 1"->
+                        levelSecond.Task1();
+                case "task 2" -> {
+                    System.out.println
+                            ("""
+                                    wybierz kategorie (wpisz cyfre):
+                                    1: Ogród\s
+                                    2: motoryzacja\s
+                                    3: moda
+                                    4: hobby""");
+                    EnumValidator(sc);
+                }
+                default -> System.out.println("nie rozumiem");
+
+            }
+        }
+    }
+    private void EnumValidator(Scanner sc) {
+        while (sc.hasNextLine()){
+            String category = sc.nextLine();
+            Product.Category kategoria = null;
+
+            switch (category){
+                case "1"
+                        -> kategoria=Product.Category.GARDEN;
+                case "2"
+                        -> kategoria=Product.Category.AUTOMOTIVE;
+                case "3"
+                        ->kategoria=Product.Category.CLOTHES;
+                case "4"
+                        ->kategoria=Product.Category.HOBBY;
+                default -> {
+                    System.out.println("nie rozumiem. Wybierz kategorie od 1 - 4" );
+                    continue;
+                }
+
+            }
+            levelSecond.Task2(kategoria);
         }
     }
 

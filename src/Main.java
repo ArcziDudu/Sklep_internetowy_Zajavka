@@ -11,10 +11,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         List<Purchase> produce = DataFactory.produce();
 
-
-
         System.out.println("Witaj ! Wpisz start aby rozpocząć");
-
 
         while (sc.hasNextLine()){
             String task = sc.nextLine().trim().toLowerCase();

@@ -1,13 +1,16 @@
-import java.util.List;
 
-public class levelFirst extends Level{
 
-    private final String clientCounter = ClientCounter(produce);
-    private final String blikCounter = BlikPaymentCounter(produce);
-    private final String cardCounter = CreditCardPaymentCounter(produce);
-    private final String euroCounter = PurchaseInEuroCounter(produce);
-    private final String uniqueEuro = UniqueTransactionInEuro(produce);
-    private final String all = ShowAll(produce,clientCounter,blikCounter,cardCounter,euroCounter,uniqueEuro);
+public class levelFirst extends Level {
+    private final String clientCounter = Task1();
+    private final String blikCounter = Task2();
+    private final String cardCounter = Task3();
+    private final String euroCounter = Task4();
+    private final String uniqueEuro = Task5();
+    private final String alls = getAll();
+
+    public String getAlls() {
+        return alls;
+    }
 
     public String getClientCounter() {
         return clientCounter;
@@ -29,39 +32,36 @@ public class levelFirst extends Level{
         return uniqueEuro;
     }
 
-    public String getAll() {
-        return all;
-    }
-
-    public  String ClientCounter(List<Purchase> produce) {
+    public String Task1() {
         return "Ilość unikalnych klientów sklepu: "+produce.stream()
                 .map(Purchase::getBuyer)
                 .distinct()
                 .count();
     }
 
-    public String BlikPaymentCounter(List<Purchase> produce) {
+    public String Task2() {
         return "Ilość klientów płącących za zakupy blikiem: "+ produce.stream()
                 .filter(p-> Purchase.Payment.BLIK.equals(p.getPayment()))
                 .map(Purchase::getBuyer)
                 .distinct()
                 .count();
     }
-    public String CreditCardPaymentCounter(List<Purchase> produce) {
+
+    public String Task3() {
         return "Ilość klientów płącących za zakupy kartą kredytową: "+ produce.stream()
                 .filter(p-> Purchase.Payment.CREDIT_CARD.equals(p.getPayment()))
                 .map(Purchase::getBuyer)
                 .distinct()
                 .count();
     }
-    public String PurchaseInEuroCounter(List<Purchase> produce) {
+    public String Task4() {
         return "Ilość zakupów opłaconych walutą Euro: "+ produce.stream()
                 .map(Purchase::getProduct)
                 .map(Product::getPrice)
                 .filter(p-> Money.Currency.EUR.equals(p.getCurrency()))
                 .count();
     }
-    public String UniqueTransactionInEuro(List<Purchase> produce) {
+    public String Task5() {
         return "Ilość unikalnych transakcji w walucie euro: "+produce.stream()
                 .map(Purchase::getProduct)
                 .distinct()
@@ -69,17 +69,14 @@ public class levelFirst extends Level{
                 .filter(p-> Money.Currency.EUR.equals(p.getCurrency()))
                 .count();
     }
-
-   public String ShowAll(
-            List<Purchase> produce,
-            String s,
-            String blikCounter,
-            String cardCounter,
-            String euroCounter,
-            String uniqueEuro) {
-        return s +"\n"+ blikCounter
+    
+    public String getAll(){
+        return clientCounter +"\n"+ blikCounter
                 +"\n"+cardCounter
                 +"\n"+euroCounter
                 +"\n"+uniqueEuro;
     }
-}
+    }
+
+
+
