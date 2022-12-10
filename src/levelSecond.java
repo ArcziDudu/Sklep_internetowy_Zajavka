@@ -1,12 +1,11 @@
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
-
+import java.util.stream.Stream;
 
 public class levelSecond extends Level{
-
-
     public void Task1() {
         TreeMap<String, BigDecimal> collect = produce.stream()
                 .filter(p -> Money.Currency.PLN.equals(p.getProduct().getPrice().getCurrency()))
@@ -37,19 +36,43 @@ public class levelSecond extends Level{
                 System.out.println("osoba: "+k+"| kupiła następującą ilość produktów z wybranej kategorii: "+v));
     }
 
-    public String Task3() {
-        return null;
+    public void Task3() {
+        long count = produce.stream()
+                .map(p -> new Purchase(p, OrderService.checkOrderStatus(p)))
+                .filter(c -> Purchase.Status.WYKONANO.equals(c.getStatus()))
+                .count();
+        Map<Purchase.Status, List<Purchase>> collect = produce.stream()
+                .map(p -> new Purchase(p, OrderService.checkOrderStatus(p)))
+                .collect(Collectors.toMap(
+                        Purchase::getStatus,
+                        List::of,
+                        (List<Purchase> cl, List<Purchase> nl) ->
+                                Stream.concat(cl.stream(), nl.stream())
+                                        .collect(Collectors.toList()))
+                );
+        System.out.println("ilość zamówień ze statusem wykonano: "+count);
+       collect.forEach((k,v)
+               -> System.out.println("status: "+k+" "+v));
     }
 
+    public void Task4() {
+       List<Purchase> listaEur = produce.stream()
+               .filter(p -> Money.Currency.EUR.equals(p.getProduct().getPrice().getCurrency())).toList();
 
-    public String Task4() {
-        return null;
+        Map<String, List<Purchase>> euroPurchases = listaEur.stream()
+                .collect(Collectors.groupingBy(
+                        p -> p.getBuyer().getId()
+                ));
+
+        long count = listaEur.stream()
+                .map(Purchase::getBuyer)
+                .distinct()
+                .count();
+        System.out.println("ilość unikalnych klientów którzy kupili produkty wyconiony w euro: " + count);
+        euroPurchases.forEach((k,v)->
+                System.out.println("klient: "+k+"| zakupy: "+ v));
     }
-
-
     public String Task5() {
         return null;
     }
-
-
 }

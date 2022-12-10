@@ -70,6 +70,9 @@ public class StartTerminal {
         System.out.println("wpisz task 1 aby zobaczyć ile PLN wydała każda z osób");
         System.out.println
                 ("wpisz task 2 aby zobaczyć ilość kupionych przedmiotów z danej kategorii przez poszczególne osoby");
+        System.out.println("wpisz task 3 aby zobaczyć ilość zamówień wykonanych oraz tablice statusów dla przedmiotów");
+        System.out.println("wpisz task 4 aby zobaczyć listę zakupów poszczególnych klientów opłaconych Euro");
+        System.out.println("wpisz task 5 aby zobaczyć listę produktów jakie zakupił klient z danego rocznika");
         TaskChecker(sc);
     }
 
@@ -90,6 +93,10 @@ public class StartTerminal {
                                     4: hobby""");
                     EnumValidator(sc);
                 }
+                case "task 3"
+                    ->levelSecond.Task3();
+                case "task 4"
+                    ->levelSecond.Task4();
                 default -> System.out.println("nie rozumiem");
 
             }
