@@ -97,6 +97,8 @@ public class StartTerminal {
                     ->levelSecond.Task3();
                 case "task 4"
                     ->levelSecond.Task4();
+                case "task 5"
+                    ->levelSecond.Task5();
                 default -> System.out.println("nie rozumiem");
 
             }

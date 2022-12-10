@@ -68,11 +68,17 @@ public class levelSecond extends Level{
                 .map(Purchase::getBuyer)
                 .distinct()
                 .count();
-        System.out.println("ilość unikalnych klientów którzy kupili produkty wyconiony w euro: " + count);
+        System.out.println("ilość unikalnych klientów którzy kupili produkty wycenione w euro: " + count);
         euroPurchases.forEach((k,v)->
                 System.out.println("klient: "+k+"| zakupy: "+ v));
     }
-    public String Task5() {
-        return null;
+    public void Task5() {
+        TreeMap<String, List<Product>> productsPerClientYear = produce.stream()
+                .collect(Collectors.groupingBy(
+                        p -> p.getBuyer().getPesel().toString().substring(0, 2),
+                        TreeMap::new,
+                        Collectors.mapping(Purchase::getProduct, Collectors.toList())
+                ));
+        productsPerClientYear.forEach((k,v)-> System.out.println("rocznik: "+k+"| zakupy: "+v));
     }
-}
+    }
