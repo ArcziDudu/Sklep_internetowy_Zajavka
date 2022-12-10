@@ -73,6 +73,7 @@ public class StartTerminal {
         System.out.println("wpisz task 3 aby zobaczyć ilość zamówień wykonanych oraz tablice statusów dla przedmiotów");
         System.out.println("wpisz task 4 aby zobaczyć listę zakupów poszczególnych klientów opłaconych Euro");
         System.out.println("wpisz task 5 aby zobaczyć listę produktów jakie zakupił klient z danego rocznika");
+        System.out.println("wpisz task 6 aby zobaczyć listę produktów z danych kategorii kupowanych przez poszczególne roczniki");
         TaskChecker(sc);
     }
 
@@ -99,6 +100,8 @@ public class StartTerminal {
                     ->levelSecond.Task4();
                 case "task 5"
                     ->levelSecond.Task5();
+                case "task 6"
+                    ->levelSecond.Task6();
                 default -> System.out.println("nie rozumiem");
 
             }

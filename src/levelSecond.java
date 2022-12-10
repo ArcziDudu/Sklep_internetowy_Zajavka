@@ -1,7 +1,5 @@
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -80,5 +78,16 @@ public class levelSecond extends Level{
                         Collectors.mapping(Purchase::getProduct, Collectors.toList())
                 ));
         productsPerClientYear.forEach((k,v)-> System.out.println("rocznik: "+k+"| zakupy: "+v));
+    }
+    public void Task6(){
+        Map<String, Set<Product.Category>> unique = produce.stream()
+                .collect(Collectors.toMap(
+                        p -> p.getBuyer().getPesel().toString().substring(0, 2),
+                        p -> new HashSet<>(List.of(p.getProduct().getCategory())),
+                        (currentSet, nextSet)-> Stream.concat(currentSet.stream(), nextSet.stream())
+                                .collect(Collectors.toSet())
+                ));
+        unique.forEach((k,v)->
+                System.out.println("rocznik: "+k+"| kategorie: "+v));
     }
     }
