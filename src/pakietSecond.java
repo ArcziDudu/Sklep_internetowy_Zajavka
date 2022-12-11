@@ -3,7 +3,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class levelSecond extends Level {
+public class pakietSecond extends Level {
     public void Task1() {
         TreeMap<String, BigDecimal> collect = produce.stream()
                 .filter(p -> Money.Currency.PLN.equals(p.getProduct().getPrice().getCurrency()))

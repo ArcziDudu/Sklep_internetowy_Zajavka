@@ -1,10 +1,12 @@
 import java.util.Scanner;
 
 public class StartTerminal {
-    private final levelFirst levelFirst = new levelFirst();
-    private final levelSecond levelSecond = new levelSecond();
-    private final levelThird  levelThird =  new levelThird();
+    private final pakietFirst pakietFirst = new pakietFirst();
+    private final pakietSecond pakietSecond = new pakietSecond();
+    private final pakietThird pakietThird =  new pakietThird();
     public void start(String task, Scanner sc){
+        //jeśli uzykownik wpisze start otrzymuje możliwości wyboru poziomu z taskami
+
         if(task.equals("start")){
             letsStart(sc);
         } else {
@@ -13,50 +15,36 @@ public class StartTerminal {
     }
 
     private void letsStart(Scanner sc) {
-        System.out.println("Wybierz poziom");
-        System.out.println("poziom 1");
-        System.out.println("poziom 2");
-        System.out.println("poziom 3");
-        levelValidator(sc);
+        //użytkownik wybiera pakiet tasków
+
+        System.out.println("Wybierz pakiet");
+        System.out.println("pakiet 1");
+        System.out.println("pakiet 2");
+        System.out.println("pakiet 3");
+        pakietValidator(sc); //funkcja sprawdzająca który pakiet został wybrany
     }
 
-    private void levelValidator(Scanner sc) {
+    private void pakietValidator(Scanner sc) {
+        //w zależności od wybranego poziomu wywołuje się funckja dla odpowiedniego pakietu
         while (sc.hasNextLine()){
-            String level = sc.nextLine();
+            String pakiet = sc.nextLine();
 
-            switch (level){
-                case "poziom 1"
-                        -> startLevel1(sc);
-                case "poziom 2"
-                        ->startLevel2(sc);
-                case "poziom 3"
-                    ->startLevel3(sc);
+            switch (pakiet){
+                case "pakiet 1"
+                        -> startPakiet1(sc);
+                case "pakiet 2"
+                        -> startPakiet2(sc);
+                case "pakiet 3"
+                    -> startPakiet3(sc);
                 default
                         -> System.out.println("nie rozumiem");
             }
         }
     }
 
-    private void startLevel3(Scanner sc) {
-        System.out.println("wpisz task 1 aby wyświetlić tabele z informacjami: \n" +
-                "rocznik klientów (pod uwagę brani są starsi niż 50 lat) " +
-                "| najmniej popularna kategoria dla danego rocznika " +
-                "| ilość transakcji dla danego rocznika w obrębie danej kategorii");
-        System.out.println();
-        System.out.println("wpisz task 2 aby zobaczyć który rocznik zakupił najwięcej produktów");
-        while (sc.hasNextLine()){
-            String level3 = sc.nextLine();
-            switch (level3){
-                case "task 1"
-                        -> levelThird.task1();
-                case "task 2"
-                    -> System.out.println(levelThird.getAnswerTask2());
-            }
-        }
-    }
 
 
-    private void startLevel1(Scanner sc) {
+    private void startPakiet1(Scanner sc) {
         System.out.println("wpisz task 1 aby wyświetlić ilość osób która dokonała zakupów w sklepie");
         System.out.println("wpisz task 2 aby wyświetlić jaka ilość klientów płaciła Blikiem");
         System.out.println("wpisz task 3 aby wyświetlić jaka ilość klientów płaciła kartą kredytową.");
@@ -64,25 +52,28 @@ public class StartTerminal {
         System.out.println("wpisz task 5 aby wyświetlić ile unikalnych kupionych produktów zostało zakupionych w EUR");
         System.out.println("Wpisz \"wszystko\" aby zobaczyć wszystkie wyniki");
         System.out.println("wpisz \"powrót\" aby wrócić do menu wyboru poziomów");
-        taskCheckerForLevelFirst(sc);
+
+        taskCheckerForPakietFirst(sc); //funkcja sprawdzająca, który task ma zostać wywołany
     }
 
-    private void taskCheckerForLevelFirst(Scanner sc) {
+    private void taskCheckerForPakietFirst(Scanner sc) {
+        //w zależności od wybranego tasku wywołuje się odpowiednia funkcja z klasy levelFirst
+
         while (sc.hasNextLine()){
-            String level1 = sc.nextLine().trim();
-            switch (level1) {
+            String taskForPakietOne = sc.nextLine().trim();
+            switch (taskForPakietOne) {
                 case "task 1"
-                        -> System.out.println(levelFirst.getClientCounter());
+                        -> System.out.println(pakietFirst.getClientCounter());
                 case "task 2"
-                        -> System.out.println(levelFirst.getBlikCounter());
+                        -> System.out.println(pakietFirst.getBlikCounter());
                 case "task 3"
-                        -> System.out.println(levelFirst.getCardCounter());
+                        -> System.out.println(pakietFirst.getCardCounter());
                 case "task 4"
-                        -> System.out.println(levelFirst.getEuroCounter());
+                        -> System.out.println(pakietFirst.getEuroCounter());
                 case "task 5"
-                        -> System.out.println(levelFirst.getUniqueEuro());
+                        -> System.out.println(pakietFirst.getUniqueEuro());
                 case "wszystko"
-                        -> System.out.println(levelFirst.getAlls());
+                        -> System.out.println(pakietFirst.getAlls());
                 case "powrót"
                     ->letsStart(sc);
                 default -> System.out.println("nie rozumiem");
@@ -91,46 +82,48 @@ public class StartTerminal {
         }
     }
 
-    private void startLevel2(Scanner sc) {
+    private void startPakiet2(Scanner sc) {
         System.out.println("wpisz task 1 aby zobaczyć ile PLN wydała każda z osób");
         System.out.println
                 ("wpisz task 2 aby zobaczyć ilość kupionych przedmiotów z danej kategorii przez poszczególne osoby");
         System.out.println("wpisz task 3 aby zobaczyć ilość zamówień wykonanych oraz tablice statusów dla przedmiotów");
         System.out.println("wpisz task 4 aby zobaczyć listę zakupów poszczególnych klientów opłaconych Euro");
         System.out.println("wpisz task 5 aby zobaczyć listę produktów jakie zakupił klient z danego rocznika");
-        System.out.println("wpisz task 6 aby zobaczyć listę produktów z danych kategorii kupowanych przez poszczególne roczniki");
+        System.out.println("wpisz task 6 aby zobaczyć listę kategorii kupowanych przez poszczególne roczniki");
         System.out.println("wpisz task 7 aby zobaczyć listę najczęściej sprzedawanych prosuktów");
         System.out.println("wpisz \"powrót\"  aby wrócić do menu wyboru poziomów");
-        TaskCheckerForLevelSecond(sc);
+        TaskCheckerForPakietSecond(sc); //wywołuje funkcję do sprawdzania, który task ma zostać wywołany
     }
 
-    private void TaskCheckerForLevelSecond(Scanner sc) {
+    private void TaskCheckerForPakietSecond(Scanner sc) {
+        //w zależności od wybranego tasku wywołuje się odpowiednia funkcja z klasy levelSecond
         while (sc.hasNextLine()){
-            String level2Scanner = sc.nextLine();
+            String taskForPakietTwo = sc.nextLine();
 
-            switch (level2Scanner){
+            switch (taskForPakietTwo){
                 case "task 1"->
-                        levelSecond.Task1();
+                        pakietSecond.Task1();
                 case "task 2" -> {
                     System.out.println
                             ("""
                                     wybierz kategorie (wpisz cyfre):
-                                    1: Ogród\s
-                                    2: motoryzacja\s
+                                    1: Ogród
+                                    2: motoryzacja
                                     3: moda
-                                    4: hobby""");
-                    EnumValidator(sc);
+                                    4: hobby
+                                    5: powrót""");
+                    EnumValidator(sc); //funkcja która przekazuje do metody kategorię wybraną przez użytkowanika
                 }
                 case "task 3"
-                    ->levelSecond.Task3();
+                    -> pakietSecond.Task3();
                 case "task 4"
-                    ->levelSecond.Task4();
+                    -> pakietSecond.Task4();
                 case "task 5"
-                    ->levelSecond.Task5();
+                    -> pakietSecond.Task5();
                 case "task 6"
-                    ->levelSecond.Task6();
+                    -> pakietSecond.Task6();
                 case "task 7"
-                    ->levelSecond.task7();
+                    -> pakietSecond.task7();
                 case "powrót"
                     ->letsStart(sc);
                 default -> System.out.println("nie rozumiem");
@@ -138,10 +131,15 @@ public class StartTerminal {
             }
         }
     }
+
     private void EnumValidator(Scanner sc) {
+        //użytkownik wybiera, jaką kategorie chce sprawdzić i zostaje ona przekazana do funkcji
         while (sc.hasNextLine()){
             String category = sc.nextLine();
             Product.Category kategoria;
+            if(category.equals("5")){
+                startPakiet2(sc);
+            }
 
             switch (category){
                 case "1"
@@ -158,8 +156,38 @@ public class StartTerminal {
                 }
 
             }
-            levelSecond.Task2(kategoria);
+            pakietSecond.Task2(kategoria);
         }
     }
 
+    private void startPakiet3(Scanner sc) {
+        System.out.println("wpisz task 1 aby wyświetlić tabele z informacjami: \n" +
+                "rocznik klientów (pod uwagę brani są starsi niż 50 lat) " +
+                "| najmniej popularna kategoria dla danego rocznika " +
+                "| ilość transakcji dla danego rocznika w obrębie danej kategorii");
+
+        System.out.println();
+
+        System.out.println("wpisz task 2 aby zobaczyć który rocznik zakupił najwięcej produktów");
+
+        taskCheckerForPakietThird(sc); //wywołuje funkcje do sprawdzania, który task ma zostać wywołany
+    }
+
+    private void taskCheckerForPakietThird(Scanner sc) {
+        //w zależności od wybranego tasku wywołuje się odpowiednia funkcja z klasy levelThird
+
+        while (sc.hasNextLine()){
+            String taskPakietForLevelThree = sc.nextLine();
+
+            switch (taskPakietForLevelThree){
+                case "task 1"
+                        -> pakietThird.task1();
+                case "task 2"
+                        -> System.out.println(pakietThird.getAnswerTask2());
+                case "powrót"
+                        ->letsStart(sc);
+                default -> System.out.println("nie rozumiem");
+            }
+        }
+    }
 }

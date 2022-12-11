@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class levelThird extends Level{
+public class pakietThird extends Level{
 final Integer CURRENT_YEAR = 2020;
 private final String answerTask2 = task2();
 
