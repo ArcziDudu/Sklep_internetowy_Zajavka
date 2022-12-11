@@ -23,7 +23,6 @@ public class Product implements Comparable<Product>{
         return price;
     }
 
-
     @Override
     public int compareTo(final Product o) {
         int thisNumber = Integer.parseInt(id.substring(7));
@@ -35,10 +34,5 @@ public class Product implements Comparable<Product>{
         CLOTHES,
         GARDEN,
         AUTOMOTIVE
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }

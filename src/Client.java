@@ -19,8 +19,21 @@ public class Client implements Comparable<Client>{
     public String getId() {
         return id;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
     public BigInteger getPesel() {
         return pesel;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     @Override
