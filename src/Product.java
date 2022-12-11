@@ -15,6 +15,10 @@ public class Product implements Comparable<Product>{
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -22,7 +26,6 @@ public class Product implements Comparable<Product>{
     public Money getPrice() {
         return price;
     }
-
 
     @Override
     public int compareTo(final Product o) {
@@ -35,10 +38,5 @@ public class Product implements Comparable<Product>{
         CLOTHES,
         GARDEN,
         AUTOMOTIVE
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }

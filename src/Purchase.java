@@ -7,7 +7,18 @@ public class Purchase {
     private final Delivery delivery;
     private final Payment payment;
     private final LocalDate when;
-    private final Status status;
+    private Status status = Status.PAID;
+
+    public Purchase(Client buyer, Product product, long quanity, Delivery delivery, Payment payment, LocalDate when, Status status) {
+        this.buyer = buyer;
+        this.product = product;
+        this.quanity = quanity;
+        this.delivery = delivery;
+        this.payment = payment;
+        this.when = when;
+        this.status = status;
+    }
+
 
     public Purchase(Client buyer, Product product, long quanity, Delivery delivery, Payment payment, LocalDate when) {
         this.buyer = buyer;
@@ -16,36 +27,35 @@ public class Purchase {
         this.delivery = delivery;
         this.payment = payment;
         this.when = when;
-        this.status = Status.OPŁACONO;
-    }
-
-
-    public Purchase(Purchase purchase, Status status) {
-        this.buyer = purchase.buyer;
-        this.product = purchase.product;
-        this.quanity = purchase.quanity;
-        this.delivery = purchase.delivery;
-        this.payment = purchase.payment;
-        this.when = purchase.when;
-        this.status = status;
     }
 
     public Client getBuyer() {
         return buyer;
     }
+
     public Product getProduct() {
         return product;
     }
+
     public long getQuanity() {
         return quanity;
     }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
     public Payment getPayment() {
         return payment;
     }
+
+    public LocalDate getWhen() {
+        return when;
+    }
+
     public Status getStatus() {
         return status;
     }
-
 
     public enum Delivery{
         IN_POST,
@@ -58,13 +68,9 @@ public class Purchase {
         CREDIT_CARD
     }
     public enum Status{
-        OPŁACONO,
-        WYSŁANO,
-        WYKONANO
+        PAID,
+        SENT,
+        DONE
     }
 
-    @Override
-    public String toString() {
-        return "" + product;
-    }
 }
