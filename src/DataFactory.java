@@ -1,3 +1,4 @@
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -6,6 +7,7 @@ import java.util.List;
 
 
 public class DataFactory {
+
     public static List<Purchase> produce() {
         List<Purchase> purchaseList = new ArrayList<>();
         // Clients
