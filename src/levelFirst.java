@@ -8,6 +8,7 @@ public class levelFirst extends Level {
     private final String uniqueEuro = Task5();
     private final String alls = getAll();
 
+
     public String getAlls() {
         return alls;
     }

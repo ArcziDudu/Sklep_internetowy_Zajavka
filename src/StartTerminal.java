@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Scanner;
+
 public class StartTerminal {
     private final levelFirst levelFirst = new levelFirst();
     private final levelSecond levelSecond = new levelSecond();
@@ -17,8 +18,6 @@ public class StartTerminal {
         System.out.println("poziom 1");
         System.out.println("poziom 2");
         System.out.println("poziom 3");
-        System.out.println("poziom 4");
-        System.out.println("poziom 5");
         levelValidator(sc);
     }
 
@@ -45,6 +44,7 @@ public class StartTerminal {
         System.out.println("wpisz task 4 aby wyświetlić jaka ilość zakupów została wykonana w walucie EUR.");
         System.out.println("wpisz task 5 aby wyświetlić ile unikalnych kupionych produktów zostało zakupionych w EUR");
         System.out.println("Wpisz \"wszystko\" aby zobaczyć wszystkie wyniki");
+        System.out.println("wpisz \"powrót\" aby wrócić do menu wyboru poziomów");
         while (sc.hasNextLine()){
             String level1 = sc.nextLine().trim();
             switch (level1) {
@@ -60,6 +60,8 @@ public class StartTerminal {
                         -> System.out.println(levelFirst.getUniqueEuro());
                 case "wszystko"
                         -> System.out.println(levelFirst.getAlls());
+                case "powrót"
+                    ->letsStart(sc);
                 default -> System.out.println("nie rozumiem");
             }
 
@@ -74,6 +76,8 @@ public class StartTerminal {
         System.out.println("wpisz task 4 aby zobaczyć listę zakupów poszczególnych klientów opłaconych Euro");
         System.out.println("wpisz task 5 aby zobaczyć listę produktów jakie zakupił klient z danego rocznika");
         System.out.println("wpisz task 6 aby zobaczyć listę produktów z danych kategorii kupowanych przez poszczególne roczniki");
+        System.out.println("wpisz task 7 aby zobaczyć listę najczęściej sprzedawanych prosuktów");
+        System.out.println("wpisz \"powrót\"  aby wrócić do menu wyboru poziomów");
         TaskChecker(sc);
     }
 
@@ -102,6 +106,10 @@ public class StartTerminal {
                     ->levelSecond.Task5();
                 case "task 6"
                     ->levelSecond.Task6();
+                case "task 7"
+                    ->levelSecond.task7();
+                case "powrót"
+                    ->letsStart(sc);
                 default -> System.out.println("nie rozumiem");
 
             }
@@ -110,7 +118,7 @@ public class StartTerminal {
     private void EnumValidator(Scanner sc) {
         while (sc.hasNextLine()){
             String category = sc.nextLine();
-            Product.Category kategoria = null;
+            Product.Category kategoria;
 
             switch (category){
                 case "1"

@@ -3,7 +3,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class levelSecond extends Level{
+public class levelSecond extends Level {
     public void Task1() {
         TreeMap<String, BigDecimal> collect = produce.stream()
                 .filter(p -> Money.Currency.PLN.equals(p.getProduct().getPrice().getCurrency()))
@@ -89,5 +89,51 @@ public class levelSecond extends Level{
                 ));
         unique.forEach((k,v)->
                 System.out.println("rocznik: "+k+"| kategorie: "+v));
+    }
+    public void task7(){
+        Map<String, Long> quantityPerProductId = produce.stream()
+                .collect(Collectors.groupingBy(
+                        p -> p.getProduct().getId(),
+                        TreeMap::new,
+                        Collectors.mapping(
+                                Purchase::getQuanity,
+                                Collectors.reducing(0L, Long::sum)
+                        )
+                ));
+
+        Comparator<? super Pair<String, Long>> pairComparator = Comparator
+                .comparing((Pair<String,Long> p)->p.getV())
+                .reversed()
+                .thenComparing(Pair::getU);
+
+        Pair<String, Long> firstMostBoughtProductId = quantityPerProductId.entrySet().stream()
+                .map(e -> new Pair<>(e.getKey(), e.getValue())).min(pairComparator)
+                .orElse(new Pair<>("Deafult ", 0L));
+
+        Pair<String, Long> secondMostBoughtProductId = quantityPerProductId.entrySet().stream()
+                .map(e -> new Pair<>(e.getKey(), e.getValue()))
+                .sorted(pairComparator)
+                .skip(1)
+                .findFirst()
+                .orElse(new Pair<>("Deafult ", 0L));
+
+        Pair<String, Long> thirdMostBoughtProductId = quantityPerProductId.entrySet().stream()
+                .map(e -> new Pair<>(e.getKey(), e.getValue()))
+                .sorted(pairComparator)
+                .skip(2)
+                .findFirst()
+                .orElse(new Pair<>("Deafult ", 0L));
+
+
+        quantityPerProductId.forEach((k,v)
+                -> System.out.println("kod produktu: "+k+" ilość sprzedanych: "+v));
+        System.out.println();
+
+        System.out.println("pierwszy najczęściej sprzedawany produkt: "+ firstMostBoughtProductId);
+
+        System.out.println("drugi najczęściej sprzedawany produkt: "+secondMostBoughtProductId);
+
+        System.out.println("trzeci najczęściej sprzedawany produkt: "+thirdMostBoughtProductId);
+
     }
     }
