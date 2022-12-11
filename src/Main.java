@@ -1,9 +1,5 @@
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,7 +13,5 @@ public class Main {
             String task = sc.nextLine().trim().toLowerCase();
             startTerminal.start(task, sc);
         }
-
-
     }
 }

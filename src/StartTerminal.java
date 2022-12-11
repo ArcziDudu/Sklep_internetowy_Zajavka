@@ -1,10 +1,9 @@
-import java.util.List;
 import java.util.Scanner;
 
 public class StartTerminal {
     private final levelFirst levelFirst = new levelFirst();
     private final levelSecond levelSecond = new levelSecond();
-    List<Purchase> produce = DataFactory.produce();
+    private final levelThird  levelThird =  new levelThird();
     public void start(String task, Scanner sc){
         if(task.equals("start")){
             letsStart(sc);
@@ -30,8 +29,28 @@ public class StartTerminal {
                         -> startLevel1(sc);
                 case "poziom 2"
                         ->startLevel2(sc);
+                case "poziom 3"
+                    ->startLevel3(sc);
                 default
                         -> System.out.println("nie rozumiem");
+            }
+        }
+    }
+
+    private void startLevel3(Scanner sc) {
+        System.out.println("wpisz task 1 aby wyświetlić tabele z informacjami: \n" +
+                "rocznik klientów (pod uwagę brani są starsi niż 50 lat) " +
+                "| najmniej popularna kategoria dla danego rocznika " +
+                "| ilość transakcji dla danego rocznika w obrębie danej kategorii");
+        System.out.println();
+        System.out.println("wpisz task 2 aby zobaczyć który rocznik zakupił najwięcej produktów");
+        while (sc.hasNextLine()){
+            String level3 = sc.nextLine();
+            switch (level3){
+                case "task 1"
+                        -> levelThird.task1();
+                case "task 2"
+                    -> System.out.println(levelThird.getAnswerTask2());
             }
         }
     }
@@ -45,6 +64,10 @@ public class StartTerminal {
         System.out.println("wpisz task 5 aby wyświetlić ile unikalnych kupionych produktów zostało zakupionych w EUR");
         System.out.println("Wpisz \"wszystko\" aby zobaczyć wszystkie wyniki");
         System.out.println("wpisz \"powrót\" aby wrócić do menu wyboru poziomów");
+        taskCheckerForLevelFirst(sc);
+    }
+
+    private void taskCheckerForLevelFirst(Scanner sc) {
         while (sc.hasNextLine()){
             String level1 = sc.nextLine().trim();
             switch (level1) {
@@ -78,10 +101,10 @@ public class StartTerminal {
         System.out.println("wpisz task 6 aby zobaczyć listę produktów z danych kategorii kupowanych przez poszczególne roczniki");
         System.out.println("wpisz task 7 aby zobaczyć listę najczęściej sprzedawanych prosuktów");
         System.out.println("wpisz \"powrót\"  aby wrócić do menu wyboru poziomów");
-        TaskChecker(sc);
+        TaskCheckerForLevelSecond(sc);
     }
 
-    private void TaskChecker(Scanner sc) {
+    private void TaskCheckerForLevelSecond(Scanner sc) {
         while (sc.hasNextLine()){
             String level2Scanner = sc.nextLine();
 
