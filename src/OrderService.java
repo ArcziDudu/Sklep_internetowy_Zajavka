@@ -1,6 +1,7 @@
 import java.util.Set;
 
 public class OrderService {
+    //klasa z metodą sprawdzająca status zakupu
     private static final Set<String> PAID_STATUSES
             = Set.of("0", "5", "12", "15", "18");
     private static final Set<String> SENT_STATUSES

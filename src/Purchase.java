@@ -7,7 +7,7 @@ public class Purchase {
     private final Delivery delivery;
     private final Payment payment;
     private final LocalDate when;
-    private Status status;
+    private final Status status;
 
     public Purchase(Client buyer, Product product, long quanity, Delivery delivery, Payment payment, LocalDate when) {
         this.buyer = buyer;
@@ -33,34 +33,19 @@ public class Purchase {
     public Client getBuyer() {
         return buyer;
     }
-
     public Product getProduct() {
         return product;
     }
-
     public long getQuanity() {
         return quanity;
     }
-
-    public Delivery getDelivery() {
-        return delivery;
-    }
-
     public Payment getPayment() {
         return payment;
     }
-
-    public LocalDate getWhen() {
-        return when;
-    }
-
     public Status getStatus() {
         return status;
     }
 
-    public Money getPrice() {
-        return null;
-    }
 
     public enum Delivery{
         IN_POST,
@@ -80,9 +65,6 @@ public class Purchase {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("");
-       sb.append(product);
-
-        return sb.toString();
+        return "" + product;
     }
 }
