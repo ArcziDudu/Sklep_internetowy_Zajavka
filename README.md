@@ -1,4 +1,5 @@
 # Sklep_internetowy_Zajavka
+program należy uruchomic w srodowisku intelij uruchamiając klasę main z folderu src i podążać za informacjami wyswietlonymi w terminalu
 fikcyjny sklep z fikcyjnymi danymi, użytkownik używając terminalu wybiera pakiety o trzech poziomach trudności po czym wybiera taski będące odpowiedziami na dostępne zapytania. Porjekt pisany jest w podejściu funkcyjnym oraz korzystając ze streamó.
 obliczenia jakie wykonują poszczególne taski:
 pakiet 1:
